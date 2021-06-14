@@ -1,0 +1,42 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "semicolon": [true, "always"],
+        "whitespace": [true, "check-module"],
+        "ordered-imports": [true, {
+            "import-sources-order": "case-insensitive",
+            "named-imports-order": "case-insensitive",
+            "grouped-imports": true,
+            "groups": [
+              {
+                "name": "react",
+                "match": "^react.*",
+                "order": 1
+              },
+              {
+                "name": "internal modules",
+                "match": "^@app.*",
+                "order": 3
+              },
+              {
+                "name": "relative dir",
+                "match": "^[.].*",
+                "order": 4
+              },
+              {
+                "name": "node_modules",
+                "match": ".*",
+                "order": 2
+              }
+            ]
+        }],
+        "quotemark": [true, "single"],
+        "no-consecutive-blank-lines": true,
+        "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-module", "check-separator", "check-rest-spread", "check-type", "check-typecast", "check-type-operator", "check-preblock"]
+    },
+    "rulesDirectory": []
+}
