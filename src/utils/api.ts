@@ -1,6 +1,8 @@
 import camelcaseKeys from 'camelcase-keys';
 import snakecaseKeys from 'snakecase-keys';
 
+import snackbar from './snackbar';
+
 type HttpMethod = 'GET' | 'POST' | 'PUT';
 
 const API_HOST = process.env.REACT_APP_API_HOST ?? '';
@@ -31,6 +33,7 @@ const apiRequest = (url: string = '', method: HttpMethod = 'GET', data: any = nu
                 'Content-Type': 'application/json',
                 ...(url.startsWith(API_HOST) && {'Authorization': 'Bearer ' + localStorage.getItem('access_token')})
             },
+            ...(url.startsWith(API_HOST) && {credentials: 'include'}),
             ...(data && method !== 'GET' && {body: JSON.stringify(data)})
         }).then(res => {
             const { headers, status } = res;
@@ -52,7 +55,7 @@ const apiRequest = (url: string = '', method: HttpMethod = 'GET', data: any = nu
     });
 };
 
-const apiRequestWrapper = (url: string = '', method: HttpMethod = 'GET', requestData: any = null) => {
+const apiRequestWrapper = (url: string = '', method: HttpMethod = 'GET', requestData: any = null, showErrorSnackbar: boolean = true) => {
     return new Promise((resolve: (value: any) => void, reject) => {
         const requestStart = Date.now();
         apiRequest(API_HOST + url, method, requestData).then(res => {
@@ -61,13 +64,16 @@ const apiRequestWrapper = (url: string = '', method: HttpMethod = 'GET', request
             resolve(res);
         }).catch(res => {
             const { requestId, statusCode } = res;
+            if (showErrorSnackbar) {
+                snackbar.error('API request fail (error ' + statusCode + ')');
+            }
             sendApiRequestFeedback(requestId, statusCode, Date.now() - requestStart);
             reject(res);
         });
     });
 };
 
-const nodeRequestWrapper = (host: string, action: string, requestData: any = null) =>  {
+const nodeRequestWrapper = (host: string, action: string, requestData: any = null, showErrorSnackbar: boolean = true) =>  {
     return new Promise((resolve: (value: any) => void, reject) => {
         requestData = {
             action,
@@ -80,6 +86,9 @@ const nodeRequestWrapper = (host: string, action: string, requestData: any = nul
             resolve(res);
         }).catch(res => {
             const { data, statusCode } = res;
+            if (showErrorSnackbar) {
+                snackbar.error('Node request fail (error ' + statusCode + ')');
+            }
             sendNodeRequestFeedback(host + '?action=' + action, statusCode, JSON.stringify(data), Date.now() - requestStart);
             reject(res);
         });

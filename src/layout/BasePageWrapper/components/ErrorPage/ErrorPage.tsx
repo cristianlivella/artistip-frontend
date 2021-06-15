@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 
-import dayjs from '../../utils/dayjs';
+import dayjs from '../../../../utils/dayjs';
 import { Container, StyledTypography } from './styled';
 
 interface Props {
@@ -32,15 +32,15 @@ const ErrorPage = (props : Props) => {
 
     return (
         <Container>
-        <StyledTypography variant='h2'>
-            ArtisTip
-        </StyledTypography>
-        <StyledTypography variant='h4'>
-            {errorTitle}
-        </StyledTypography>
-        <StyledTypography variant='h6'>
-            {errorDescription}
-        </StyledTypography>
+            <StyledTypography variant='h2'>
+                ArtisTip
+            </StyledTypography>
+            <StyledTypography variant='h4'>
+                {errorTitle}
+            </StyledTypography>
+            <StyledTypography variant='h6'>
+                {errorDescription}
+            </StyledTypography>
         </Container >
     );
 };

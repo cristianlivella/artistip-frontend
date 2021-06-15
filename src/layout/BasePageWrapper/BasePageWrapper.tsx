@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
+import CustomLoader from '../../common/components/CustomLoader/CustomLoader';
 import api from '../../utils/api';
 import dayjs from '../../utils/dayjs';
-import ErrorPage from '../ErrorPage/ErrorPage';
-import { Loader, LoaderContainer } from './styled';
+import BasePage from './components/BasePage/BasePage';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 import { ServerInfo } from './types';
 
-const BasePage = () => {
+const BasePageWrapper = () => {
     const [serverInfo, setServerInfo] = useState<ServerInfo | null | false>(null);
 
     useEffect(() => {
-        api.request('/info').then(res => {
+        api.request('/info', 'GET', null, false).then(res => {
             setServerInfo(res.data);
         }).catch(() => {
             api.request('/maintenance.json').then(res => {
@@ -23,9 +25,7 @@ const BasePage = () => {
 
     if (serverInfo === null) {
         return (
-            <LoaderContainer>
-                <Loader color={'secondary'} />
-            </LoaderContainer>
+            <CustomLoader />
         );
     }
 
@@ -43,11 +43,14 @@ const BasePage = () => {
 
     const { status } = serverInfo;
     if (status === 'ok') {
-        // TODO: load the application
-        return <h1>Welcome!</h1>;
+        return (
+            <BrowserRouter>
+                <BasePage />
+            </BrowserRouter>
+        );
     }
 
     return <ErrorPage />;
 };
 
-export default BasePage;
+export default BasePageWrapper;

@@ -2,10 +2,13 @@ import { useMemo } from 'react';
 
 import '@fontsource/roboto';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { StylesProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
+import { SnackbarProvider } from 'notistack';
+import { ThemeProvider } from 'styled-components';
 
-import BasePage from './layout/BasePage/BasePage';
+import BasePageWrapper from './layout/BasePageWrapper/BasePageWrapper';
+import { SnackbarUtilsConfigurator } from './utils/snackbar';
 
 const App = () => {
     const theme = useMemo(() => {
@@ -18,10 +21,15 @@ const App = () => {
 
     return (
         <StylesProvider injectFirst>
-            <ThemeProvider theme={theme}>
-                <CssBaseline/>
-                <BasePage />
-            </ThemeProvider>
+            <MuiThemeProvider theme={theme}>
+                <ThemeProvider theme={theme}>
+                    <SnackbarProvider anchorOrigin={{horizontal: 'right', vertical: 'bottom'}} autoHideDuration={8000} maxSnack={5}>
+                        <SnackbarUtilsConfigurator />
+                        <CssBaseline />
+                        <BasePageWrapper />
+                    </SnackbarProvider>
+                </ThemeProvider>
+            </MuiThemeProvider>
         </StylesProvider>
 	);
 };
