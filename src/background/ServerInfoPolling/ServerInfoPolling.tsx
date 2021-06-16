@@ -22,36 +22,41 @@ const ServerInfoPolling = () => {
     const dispatch = useDispatch();
 
     const checkMaintenance = useCallback((data: MaintenanceData) => {
-        if (lastMaintenanceInfo && JSON.stringify(lastMaintenanceInfo) !== JSON.stringify(data)) {
-            const { start, end } = data;
-            const now = dayjs();
-            if (start && end && dayjs.utc(end).isAfter(now)) {
-                const startDate = dayjs.utc(start);
+        if (JSON.stringify(lastMaintenanceInfo) !== JSON.stringify(data)) {
+            if (lastMaintenanceInfo) {
+                const { start, end } = data;
+                const now = dayjs();
+                if (start && end && dayjs.utc(end).isAfter(now)) {
+                    const startDate = dayjs.utc(start);
 
-                setTimeout(() => {
-                    window.location.reload();
-                }, startDate.diff(now));
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, startDate.diff(now));
 
-                snackbar.info('Maintenance will start ' + now.to(startDate), {
-                    autoHideDuration: 30 * 1000
-                });
+                    snackbar.info('Maintenance will start ' + now.to(startDate), {
+                        autoHideDuration: 30 * 1000
+                    });
+                }
             }
             setLastMaintenanceInfo(data);
         }
     }, [lastMaintenanceInfo]);
 
     const checkFrontend = useCallback((data: FrontendData) => {
-        if (lastFrontendInfo && JSON.stringify(lastFrontendInfo) !== JSON.stringify(data)) {
-            const refreshPage = () => {
-                setTimeout(() => {
-                    window.location.reload();
-                }, 30 * 1000);
-                snackbar.info('The app will update in a few seconds');
-            };
+        if (JSON.stringify(lastFrontendInfo) !== JSON.stringify(data)) {
+            if (lastFrontendInfo) {
+                const refreshPage = () => {
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 30 * 1000);
+                    snackbar.info('The app will update in a few seconds');
+                };
 
-            setTimeout(() => {
-                refreshPage();
-            }, data.hotfix ? 0 : (3 * 60 * 60 * 1000));
+                setTimeout(() => {
+                    refreshPage();
+                }, data.hotfix ? 0 : (3 * 60 * 60 * 1000));
+            }
+
             setLastFrontendInfo(data);
         }
     }, [lastFrontendInfo]);

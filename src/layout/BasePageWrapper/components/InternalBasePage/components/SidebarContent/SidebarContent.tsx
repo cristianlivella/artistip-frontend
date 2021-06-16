@@ -1,3 +1,5 @@
+import BalanceBanner from './components/BalanceBanner/BalanceBanner';
+import MaintenanceBanner from './components/MaintenanceBanner/MaintenanceBanner';
 import UserProfile from './components/UserProfile/UserProfile';
 import { Container, Content, Footer, StyledDivider, StyledLink, StyledTypography } from './styled';
 
@@ -12,15 +14,18 @@ const SidebarContent = (props: Props) => {
                 <StyledTypography variant='h3'>
                     ArtisTip
                 </StyledTypography>
+                <BalanceBanner />
+                <MaintenanceBanner />
             </Content>
             <Footer>
                 <StyledDivider />
                 <UserProfile />
                 <StyledDivider />
                 <div>
-                    <StyledLink href='#' color='inherit'>Terms of Service</StyledLink> <StyledLink href='#' color='inherit'>Privacy Policy</StyledLink>
+                    <StyledLink href='https://terms.artistip.xyz' target='_blank' color='inherit'>Terms of Service</StyledLink>
+                    <StyledLink href='https://privacy.artistip.xyz' target='_blank' color='inherit'>Privacy Policy</StyledLink>
                 </div>
-                <StyledLink href='mailto:@info@artistip.xyz' color='inherit'>info@artistip.xyz</StyledLink>
+                <StyledLink href='mailto:@info@artistip.xyz' target='_blank' color='inherit'>info@artistip.xyz</StyledLink>
             </Footer>
         </Container>
 

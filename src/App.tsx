@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 import '@fontsource/roboto';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,16 +9,24 @@ import { SnackbarProvider } from 'notistack';
 import { ThemeProvider } from 'styled-components';
 
 import BasePageWrapper from './layout/BasePageWrapper/BasePageWrapper';
+import { ReduxState } from './redux/types';
 import { SnackbarUtilsConfigurator } from './utils/snackbar';
 
 const App = () => {
+    const userInfo = useSelector((state: ReduxState) => state.user);
+
     const theme = useMemo(() => {
         return createMuiTheme({
           palette: {
             type: 'dark',
+            ...(
+                userInfo.id && {background: {
+                    default: '#181818'
+                }}
+            )
           },
         });
-    }, []);
+    }, [userInfo]);
 
     return (
         <StylesProvider injectFirst>

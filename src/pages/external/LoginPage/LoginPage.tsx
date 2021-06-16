@@ -20,7 +20,8 @@ const LoginPage = () => {
                 </StyledNavLink>
             </Section>
             <Footer>
-                <StyledLink href='#' color='inherit'>Terms of Service</StyledLink> <StyledLink href='#' color='inherit'>Privacy Policy</StyledLink>
+                <StyledLink href='https://terms.artistip.xyz' target='_blank' color='inherit'>Terms of Service</StyledLink>
+                <StyledLink href='https://privacy.artistip.xyz' target='_blank' color='inherit'>Privacy Policy</StyledLink>
             </Footer>
 
         </Container >

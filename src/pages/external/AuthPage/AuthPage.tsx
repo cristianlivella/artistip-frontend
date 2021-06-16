@@ -102,8 +102,8 @@ const AuthPage = (props: Props) => {
                     </StyledTypography>
                     <StyledTypography variant='body1'>
                         To start using ArtisTip you must read and accept our{' '}
-                        <StyledLink href='#' color='inherit'>Terms of Service</StyledLink> and our {' '}
-                        <StyledLink href='#' color='inherit'>Privacy Policy</StyledLink>.
+                        <StyledLink href='https://terms.artistip.xyz' target='_blank' color='inherit'>Terms of Service</StyledLink> and our {' '}
+                        <StyledLink href='https://privacy.artistip.xyz' target='_blank' color='inherit'>Privacy Policy</StyledLink>.
                     </StyledTypography>
                     <StyledFormControlLabel
                         control={<Checkbox

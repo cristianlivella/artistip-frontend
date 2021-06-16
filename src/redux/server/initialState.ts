@@ -1,8 +1,8 @@
 const initialState = {
   status: '',
   time: '',
-  nano_price: 0.0,
-  nano_minimum_amount: '0',
+  nanoPrice: 0.0,
+  nanoMinimumAmount: '0',
   frontend: {
       version: '',
       hotfix: false

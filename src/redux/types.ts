@@ -23,8 +23,8 @@ export interface GenericUserType {
 export interface ServerInfoType {
     status: string;
     time: string;
-    nano_price: number;
-    nano_minimum_amount: string;
+    nanoPrice: number;
+    nanoMinimumAmount: string;
     frontend: {
         version: string;
         hotfix: boolean;
