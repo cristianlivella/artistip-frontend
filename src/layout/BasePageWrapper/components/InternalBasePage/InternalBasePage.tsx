@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
@@ -6,11 +7,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import { ReduxState } from '../../../../redux/types';
+import UserRouter from '../routing/UserRouter';
 import SidebarContent from './components/SidebarContent/SidebarContent';
 import { AppTitleContainer, Content, DrawerContainer, MainContainer, MenuButton, MenuButtonContainer, StyledAppBar, StyledDrawer, StyledSwipeableDrawer } from './styled';
 
 const InternalBasePage = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const userInfo = useSelector((state: ReduxState) => state.user);
 
     const drawerContent = useMemo(() => {
         return <SidebarContent closeDrawer={() => setIsDrawerOpen(false)} />;
@@ -58,8 +62,9 @@ const InternalBasePage = () => {
                     </StyledDrawer>
                 </Hidden>
             </DrawerContainer>
-            <Content>
 
+            <Content>
+                {userInfo.type === 'user' ? <UserRouter /> : null}
             </Content>
         </MainContainer>
     );

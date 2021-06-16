@@ -1,10 +1,12 @@
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
+
+import Dashboard from '../../../../pages/user/Dashobard/Dashboard';
 
 const UserRouter = () => {
     return (
         <Switch>
             <Route exact path='/dashboard'>
-                <h1>Welcome from UsrRouter!</h1>
+                <Dashboard />
             </Route>
             <Redirect to='/dashboard' />
         </Switch>

@@ -6,7 +6,7 @@ import styled from 'styled-components/macro';
 
 const drawerStyle = `
     @media (min-width: 960px) {
-        width: 240px;
+        width: 360px;
         flex-shrink: 0;
     }
 `;
@@ -28,12 +28,14 @@ export const StyledDrawer = styled(Drawer)`
     ${drawerStyle}
     & > .MuiPaper-root {
         width: 360px;
+        background-color: #303030;
     }
 `;
 
 export const StyledSwipeableDrawer = styled(SwipeableDrawer)`
     & > .MuiPaper-root {
         width: 360px;
+        background-color: #303030;
     }
     @media (max-width: 400px) {
         & > .MuiPaper-root {
@@ -62,7 +64,11 @@ export const MenuButton = styled(IconButton)`
 export const Content = styled.div`
     flex-grow: 1;
     padding: 24px;
-    margin-top: 54px;
+    max-width: 100%;
+    overflow-x: hidden;
+    @media (max-width: 960px) {
+        margin-top: 54px;
+    }
     @media (max-width: 600px) {
         margin-top: 40px;
     }

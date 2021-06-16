@@ -7,7 +7,6 @@ export const Container = styled.div`
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #303030;
 `;
 
 export const Content = styled.div`
