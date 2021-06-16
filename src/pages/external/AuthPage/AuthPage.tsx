@@ -30,13 +30,10 @@ const AuthPage = (props: Props) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const acceptPrivacyPolicy = () => {
-        api.request('/privacy', 'POST', {consent: true}).then(() => {
-            refreshUserProfile();
-        }).catch(() => {
-            setIsLoading(false);
-        });
-    };
+    const onLoginError = useCallback(() => {
+        snackbar.error('Login failed. Please, try again.');
+        history.push('/login');
+    }, [history]);
 
     const refreshUserProfile = useCallback(() => {
         api.request('/users/me', 'GET', null, false).then((res) => {
@@ -46,7 +43,15 @@ const AuthPage = (props: Props) => {
         }).catch(() => {
             onLoginError();
         });
-    }, [dispatch]);
+    }, [dispatch, onLoginError]);
+
+    const acceptPrivacyPolicy = () => {
+        api.request('/privacy', 'POST', {consent: true}).then(() => {
+            refreshUserProfile();
+        }).catch(() => {
+            setIsLoading(false);
+        });
+    };
 
     const handleCheboxChange = (e: ChangeEvent<HTMLInputElement>) => {
         setCheckboxState({ ...checkboxState, [e.target.name]: e.target.checked });
@@ -61,11 +66,6 @@ const AuthPage = (props: Props) => {
         else {
             snackbar.info('You must accept the terms and the privacy policy to continue');
         }
-    };
-
-    const onLoginError = () => {
-        snackbar.error('Login failed. Please, try again.');
-        history.push('/login');
     };
 
     const canAcceptPolicy = checkboxState.terms && checkboxState.privacy;
@@ -88,7 +88,7 @@ const AuthPage = (props: Props) => {
         }).catch(() => {
             onLoginError();
         });
-    }, [service]);
+    }, [onLoginError, refreshUserProfile, service]);
 
     if (needAcceptPolicy) {
         return (

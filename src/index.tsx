@@ -12,9 +12,9 @@ import reportWebVitals from './reportWebVitals';
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_DSN,
   environment: process.env.REACT_APP_ENV,
-  /*ignoreErrors: [
+  ignoreErrors: [
       'fetch'
-  ]*/
+  ]
 });
 
 ReactDOM.render(

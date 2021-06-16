@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import '@fontsource/roboto';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import { SnackbarProvider } from 'notistack';
 import { ThemeProvider } from 'styled-components';

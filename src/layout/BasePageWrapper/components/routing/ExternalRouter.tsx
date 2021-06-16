@@ -1,4 +1,4 @@
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import AuthPage from '../../../../pages/external/AuthPage/AuthPage';
 import LoginPage from '../../../../pages/external/LoginPage/LoginPage';

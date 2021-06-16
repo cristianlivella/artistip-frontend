@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ServerInfoPolling from '../../../../background/ServerInfoPolling/ServerInfoPolling';
+import UserInfoPolling from '../../../../background/UserInfoPolling/UserInfoPolling';
 import CustomLoader from '../../../../common/components/CustomLoader/CustomLoader';
 import { ReduxState } from '../../../../redux/types';
 import { clear, setFromApi } from '../../../../redux/user/userSlice';
 import api from '../../../../utils/api';
 import InternalBasePage from '../InternalBasePage/InternalBasePage';
 import ExternalRouter from '../routing/ExternalRouter';
-import UserRouter from '../routing/UserRouter';
 
 const BasePage = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +36,13 @@ const BasePage = () => {
         return <ExternalRouter />;
     }
 
-    return <InternalBasePage />;
+    return (
+        <>
+            <InternalBasePage />
+            <UserInfoPolling />
+            <ServerInfoPolling />
+        </>
+    );
 };
 
 export default BasePage;

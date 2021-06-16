@@ -2,7 +2,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Toolbar from '@material-ui/core/Toolbar';
 import styled from 'styled-components/macro';
 
 const drawerStyle = `
@@ -58,10 +57,6 @@ export const MenuButton = styled(IconButton)`
     @media (min-width: 960px) {
         display: none !important;
     }
-`;
-
-export const StyledToolbar = styled(Toolbar)`
-    ${props => props.theme.mixins.toolbar}
 `;
 
 export const Content = styled.div`

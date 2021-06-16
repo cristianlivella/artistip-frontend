@@ -2,6 +2,7 @@ import { UserRole } from '../common/types';
 
 export interface ReduxState {
     user: GenericUserType;
+    server: ServerInfoType;
 }
 
 export interface GenericUserType {
@@ -16,5 +17,20 @@ export interface GenericUserType {
         budget: string;
         maxFollowers: number;
         smallArtistConstant: number;
+    };
+}
+
+export interface ServerInfoType {
+    status: string;
+    time: string;
+    nano_price: number;
+    nano_minimum_amount: string;
+    frontend: {
+        version: string;
+        hotfix: boolean;
+    };
+    maintenance: {
+        start: string | null;
+        end: string | null;
     };
 }

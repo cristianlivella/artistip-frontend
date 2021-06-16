@@ -25,10 +25,14 @@ const ErrorPage = (props : Props) => {
     }, [maintenanceEnd]);
 
     useEffect(() => {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             window.location.reload();
-        }, 5 * 60 * 1000);
-    });
+        }, Math.min(5 * 60 * 1000, dayjs.utc(maintenanceEnd).diff(dayjs())));
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [maintenanceEnd]);
 
     return (
         <Container>

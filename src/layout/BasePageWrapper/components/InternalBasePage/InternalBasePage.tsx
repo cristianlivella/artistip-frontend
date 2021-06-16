@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
-import { matchPath, useLocation } from 'react-router-dom';
+import { useMemo, useState } from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
@@ -7,15 +6,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import DrawerContent from './components/DrawerContent/DrawerContent';
-import { AppTitleContainer, Content, DrawerContainer, MainContainer, MenuButton, MenuButtonContainer, StyledAppBar, StyledDrawer, StyledSwipeableDrawer, StyledToolbar } from './styled';
+import SidebarContent from './components/SidebarContent/SidebarContent';
+import { AppTitleContainer, Content, DrawerContainer, MainContainer, MenuButton, MenuButtonContainer, StyledAppBar, StyledDrawer, StyledSwipeableDrawer } from './styled';
 
 const InternalBasePage = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-    const location = useLocation();
 
     const drawerContent = useMemo(() => {
-        return <DrawerContent closeDrawer={() => setIsDrawerOpen(false)} />;
+        return <SidebarContent closeDrawer={() => setIsDrawerOpen(false)} />;
     }, []);
 
     const showSidebar = true;

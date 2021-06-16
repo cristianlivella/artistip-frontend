@@ -5,7 +5,7 @@ interface Props {
     closeDrawer: () => void;
 }
 
-const DrawerContent = (props: Props) => {
+const SidebarContent = (props: Props) => {
     return (
         <Container>
             <Content>
@@ -27,4 +27,4 @@ const DrawerContent = (props: Props) => {
     );
 };
 
-export default DrawerContent;
+export default SidebarContent;

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { OptionsObject, useSnackbar, VariantType, WithSnackbarProps } from 'notistack';
+import { OptionsObject, useSnackbar, WithSnackbarProps } from 'notistack';
 
 interface Props {
     setUseSnackbarRef: (showSnackbar: WithSnackbarProps) => void;
@@ -22,7 +22,7 @@ export const SnackbarUtilsConfigurator = () => {
   return <InnerSnackbarUtilsConfigurator setUseSnackbarRef={setUseSnackbarRef} />;
 };
 
-export default {
+const snackbar = {
     success(msg: string, options: OptionsObject = {}) {
         this.toast(msg, { ...options, variant: 'success' });
     },
@@ -39,3 +39,5 @@ export default {
         useSnackbarRef.enqueueSnackbar(msg, options);
     }
 };
+
+export default snackbar;
