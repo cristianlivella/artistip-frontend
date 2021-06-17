@@ -3,6 +3,10 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components/macro';
 
+export const AttributionContainer = styled.div`
+    display: flex;
+`;
+
 export const Container = styled.div`
     min-height: 100%;
     display: flex;
@@ -18,6 +22,16 @@ export const Footer = styled.div`
     text-align: center;
     flex-shrink: 0;
     margin-bottom: 6px;
+`;
+
+export const SpotifyAttributionText = styled.p`
+    margin: 5px 8px;
+    font-size: 0.8rem;
+`;
+
+export const SpotifyLogo = styled.img`
+    height: 42px;
+    margin: auto 4px auto 12px;
 `;
 
 export const StyledDivider = styled(Divider)`

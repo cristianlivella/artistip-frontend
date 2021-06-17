@@ -14,7 +14,6 @@ const SliderItem = (props: Props) => {
 
     const updateTime = useCallback(() => {
         setTime(dayjs.utc(item.time).from(dayjs()));
-        console.log('x');
     }, [item]);
 
     useEffect(() => {
