@@ -21,7 +21,7 @@ const App = () => {
             type: 'dark',
             ...(
                 userInfo.id && {background: {
-                    default: '#181818'
+                    default: '#252525'
                 }}
             )
           },
