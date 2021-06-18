@@ -10,7 +10,7 @@ export const AvatarTableCell = styled(TableCell)`
 `;
 
 export const Container = styled.div`
-    margin: 24px 0;
+    margin-top: 24px;
     & > div {
         overflow-y: hidden;
     }

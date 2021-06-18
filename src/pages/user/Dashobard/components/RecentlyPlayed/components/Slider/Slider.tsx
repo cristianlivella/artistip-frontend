@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 
-import { useWindowWidth } from '@react-hook/window-size/throttled';
+import useComponentSize from '@rehooks/component-size';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 
@@ -13,16 +13,16 @@ interface Props {
 
 const Slider = (props: Props) => {
     const data = props.items;
-    const windowWidth = useWindowWidth({ leading: true });
     const [sliderRef, slider] = useKeenSlider<HTMLDivElement>();
+    const sliderSize = useComponentSize(sliderRef);
 
     const computedSlidesPerView = useMemo(() => {
-        if (sliderRef && slider && windowWidth) {
-            const sliderWidth = sliderRef?.current?.clientWidth ?? 0;
-            return Math.floor(sliderWidth / 220);
+        if (sliderRef && slider) {
+            const { width } = sliderSize;
+            return Math.floor(width / 220);
         }
         return 0;
-    }, [slider, sliderRef, windowWidth]);
+    }, [slider, sliderRef, sliderSize]);
 
     useEffect(() => {
         if (slider) {
@@ -35,7 +35,7 @@ const Slider = (props: Props) => {
                 clearTimeout(timeout);
             };
         }
-    }, [computedSlidesPerView, data, slider]);
+    }, [computedSlidesPerView, data, slider, sliderSize]);
 
     return (
         <div ref={sliderRef} className='keen-slider' >
