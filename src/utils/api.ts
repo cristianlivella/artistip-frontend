@@ -41,7 +41,7 @@ const apiRequest = (url: string = '', method: HttpMethod = 'GET', data: any = nu
             res.json().then(json => {
                 afterJsonDecode({
                     statusCode: status,
-                    data: camelcaseKeys(json),
+                    data: camelcaseKeys(json, { deep: true }),
                     requestId: headers.get('ARTISTIP-REQUEST-ID')
                 });
             }).catch(() => {
