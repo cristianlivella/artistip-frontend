@@ -51,6 +51,8 @@ const apiRequest = (url: string = '', method: HttpMethod = 'GET', data: any = nu
                     requestId: headers.get('ARTISTIP-REQUEST-ID')
                 });
             });
+        }).catch(() => {
+            snackbar.error('API request failed. Check your internet connession.');
         });
     });
 };
@@ -65,7 +67,7 @@ const apiRequestWrapper = (url: string = '', method: HttpMethod = 'GET', request
         }).catch(res => {
             const { requestId, statusCode } = res;
             if (showErrorSnackbar) {
-                snackbar.error('API request fail (error ' + statusCode + ')');
+                snackbar.error('API request failed (error ' + statusCode + ')');
             }
             sendApiRequestFeedback(requestId, statusCode, Date.now() - requestStart);
             reject(res);
@@ -87,7 +89,7 @@ const nodeRequestWrapper = (host: string, action: string, requestData: any = nul
         }).catch(res => {
             const { data, statusCode } = res;
             if (showErrorSnackbar) {
-                snackbar.error('Node request fail (error ' + statusCode + ')');
+                snackbar.error('Node request failed (error ' + statusCode + ')');
             }
             sendNodeRequestFeedback(host + '?action=' + action, statusCode, JSON.stringify(data), Date.now() - requestStart);
             reject(res);
