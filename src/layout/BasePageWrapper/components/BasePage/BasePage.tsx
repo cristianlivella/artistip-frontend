@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ServerInfoPolling from '../../../../background/ServerInfoPolling/ServerInfoPolling';
+import TransactionsWorker from '../../../../background/TransactionsWorker/TransactionsWorker';
 import UserInfoPolling from '../../../../background/UserInfoPolling/UserInfoPolling';
 import CustomLoader from '../../../../common/components/CustomLoader/CustomLoader';
 import { ReduxState } from '../../../../redux/types';
@@ -41,6 +42,7 @@ const BasePage = () => {
             <InternalBasePage />
             <UserInfoPolling />
             <ServerInfoPolling />
+            <TransactionsWorker />
         </>
     );
 };

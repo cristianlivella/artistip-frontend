@@ -13,6 +13,7 @@ export interface GenericUserType {
     privacy: boolean;
     onboardingStep?: number;
     balance?: string;
+    wallet?: string | null;
     settings?: {
         budget: string;
         maxFollowers: number;

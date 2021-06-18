@@ -18,14 +18,17 @@ const App = () => {
     const theme = useMemo(() => {
         return createMuiTheme({
           palette: {
-            type: 'dark',
-            ...(
-                userInfo.id && {background: {
-                    default: '#252525'
-                }}
-            )
+              primary: {
+                  main: '#e4e4e4',
+              },
+              type: 'dark',
+              ...(
+                  userInfo.id && {background: {
+                      default: '#252525'
+                  }}
+              )
           },
-        });
+      });
     }, [userInfo]);
 
     return (
