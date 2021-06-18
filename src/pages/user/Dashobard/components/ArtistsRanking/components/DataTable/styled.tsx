@@ -1,5 +1,6 @@
 import { Avatar } from '@material-ui/core';
 import { Link } from '@material-ui/core';
+import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import styled from 'styled-components';
@@ -23,6 +24,10 @@ export const FixedWidthCell = styled(TableCell)`
 
 export const StyledLink = styled(Link)`
     color: inherit;
+`;
+
+export const StyledTableBody = styled(TableBody)`
+    position: relative;
 `;
 
 export const SmallTableCell = styled(TableCell)`

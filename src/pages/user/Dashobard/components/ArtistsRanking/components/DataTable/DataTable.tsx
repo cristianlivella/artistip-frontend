@@ -2,7 +2,6 @@ import FlipMove from 'react-flip-move';
 
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
@@ -10,7 +9,7 @@ import bigInt from 'big-integer';
 import BoringAvatar from 'boring-avatars';
 
 import {  Item } from '../../types';
-import { AvatarTableCell, Container, FixedWidthCell, SmallTableCell, StyledAvatar, StyledLink, StyledTableHeader } from './styled';
+import { AvatarTableCell, Container, FixedWidthCell, SmallTableCell, StyledAvatar, StyledLink, StyledTableBody, StyledTableHeader } from './styled';
 
 interface Props {
     data: Item[];
@@ -68,7 +67,7 @@ const DataTable = (props: Props) => {
         <Container>
             <TableContainer component={Paper}>
                 <Table>
-                    <TableBody>
+                    <StyledTableBody>
                         <FlipMove
                             staggerDurationBy={20}
                             duration={800}
@@ -105,7 +104,7 @@ const DataTable = (props: Props) => {
                                 );
                             })}
                         </FlipMove>
-                    </TableBody>
+                    </StyledTableBody>
                 </Table>
             </TableContainer>
         </Container>
