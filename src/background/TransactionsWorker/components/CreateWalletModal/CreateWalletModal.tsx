@@ -86,7 +86,7 @@ const CreateWalletModal = (props: Props) => {
         const publicKey = nanocurrency.derivePublicKey(secretKey);
         const address = nanocurrency.deriveAddress(publicKey, { useNanoPrefix: true });
         const salt = array.random(32).toString();
-        pbkdf2(password ?? '', salt, 5000000, 32, (err, res) => {
+        pbkdf2(password, salt, 5000000, 32, (err, res) => {
             if (err) {
                 snackbar.error('Key derivation failed. Please, try again.');
                 return;

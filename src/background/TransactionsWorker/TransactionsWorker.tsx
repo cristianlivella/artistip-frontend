@@ -86,7 +86,7 @@ const TransactionsWorker = () => {
                 reject();
             }
             const { encryptedSeed, salt } = encryptedObj;
-            pbkdf2(password ?? '', salt, 5000000, 32, (err, res) => {
+            pbkdf2(password, salt, 5000000, 32, (err, res) => {
                 if (err) reject();
                 try {
                     const decryptedSeed = AES.decrypt(encryptedSeed, res.toString()).toString(Utf8);
