@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useStorageState } from 'react-storage-hooks';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -21,10 +22,13 @@ import { StyledAlert, StyledDialogContentText, StyledLinearProgress } from './st
 
 interface Props {
     open: boolean;
+    serverKey: string;
+    setLsWalletKey: (value: string) => void;
+    setSsWalletKey: (value: string) => void;
 }
 
 const CreateWalletModal = (props: Props) => {
-    const { open } = props;
+    const { open, serverKey, setLsWalletKey, setSsWalletKey} = props;
     const [isLoading, setIsLoading] = useState(false);
     const [password, setPassword] = useState<string | null>(null);
     const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
@@ -89,6 +93,8 @@ const CreateWalletModal = (props: Props) => {
             api.request('/wallets', 'POST', {
                 address, seed: encodedData
             }).then(() => {
+                const encryptedKey = AES.encrypt(seed, serverKey);
+                setLsWalletKey(encryptedKey.toString());
                 return true;
             });
         });
