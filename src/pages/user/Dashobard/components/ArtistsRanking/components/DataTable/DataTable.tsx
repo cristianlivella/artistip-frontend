@@ -49,7 +49,7 @@ const DataTable = (props: Props) => {
             return minutes + ' minute' + (minutes !== 1 ? 's' : '');
         }
         else {
-            const hours = Math.round(seconds / (60 * 60));
+            const hours = Math.floor(seconds / (60 * 60));
             const minutes = Math.round((seconds - (hours * 60 * 60)) / 60);
             return hours + ':' + formatNumber(minutes) + ' hour' + (hours !== 1 ? 's' : '');
         }
@@ -58,7 +58,7 @@ const DataTable = (props: Props) => {
     const isPayoutEstimated = !data.every(artist => artist.estimatedPayout === undefined);
     const totalPayout = data.reduce((acc, cur) => acc.add(bigInt(cur.estimatedPayout ?? cur.payout)), bigInt(0)).toString();
     const totalPayoutNano = rawToNano(totalPayout);
-    const nanoDecimalDigits = (totalPayoutNano === 0.0 || totalPayoutNano > 100) ? 0 : Math.min(3 - Math.log10(totalPayoutNano), 8);
+    const nanoDecimalDigits = (totalPayoutNano === 0.0 || totalPayoutNano > 10) ? 2 : Math.min(3 - Math.round(Math.log10(totalPayoutNano)), 8);
 
     const header = {} as Item;
     const fakeData = [header, ...data];
