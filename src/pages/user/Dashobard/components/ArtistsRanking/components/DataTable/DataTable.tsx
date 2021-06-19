@@ -58,7 +58,7 @@ const DataTable = (props: Props) => {
     const isPayoutEstimated = !data.every(artist => artist.estimatedPayout === undefined);
     const totalPayout = data.reduce((acc, cur) => acc.add(bigInt(cur.estimatedPayout ?? cur.payout)), bigInt(0)).toString();
     const totalPayoutNano = rawToNano(totalPayout);
-    const nanoDecimalDigits = (totalPayoutNano === 0.0 || totalPayoutNano > 10) ? 2 : Math.min(3 - Math.round(Math.log10(totalPayoutNano)), 8);
+    const nanoDecimalDigits = (totalPayoutNano === 0.0 || totalPayoutNano > 10) ? 2 : Math.min(3 - Math.round(Math.log10(totalPayoutNano)), 6);
 
     const header = {} as Item;
     const fakeData = [header, ...data];

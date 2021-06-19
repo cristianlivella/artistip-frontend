@@ -1,6 +1,7 @@
 import CountUp from 'react-countup';
 
 import { Paper } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
 export const Container = styled(Paper)<{red: number}>`
@@ -27,6 +28,11 @@ export const IntegerCountUp = styled(CountUp)`
 export const NanoLabel = styled.span`
     font-size: 1.2rem;
     margin-left: 8px;
+`;
+
+export const StyledButton = styled(Button)`
+    display: block;
+    margin: 12px auto 2px;
 `;
 
 export const UsdCountUp = styled(CountUp)`
