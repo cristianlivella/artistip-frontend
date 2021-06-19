@@ -26,7 +26,7 @@ const SidebarContent = (props: Props) => {
                     <StyledLink href='https://terms.artistip.xyz' target='_blank' color='inherit'>Terms of Service</StyledLink>
                     <StyledLink href='https://privacy.artistip.xyz' target='_blank' color='inherit'>Privacy Policy</StyledLink>
                 </div>
-                <StyledLink href='mailto:@info@artistip.xyz' target='_blank' color='inherit'>info@artistip.xyz</StyledLink>
+                <StyledLink href='mailto:info@artistip.xyz' target='_blank' color='inherit'>info@artistip.xyz</StyledLink>
                 <StyledDivider />
                 <AttributionContainer>
                     <SpotifyLogo src={spotify} />
