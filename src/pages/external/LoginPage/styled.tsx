@@ -24,6 +24,7 @@ export const Section = styled(Paper)`
 export const StyledButton = styled(Button)`
     margin: 8px;
     background-color: #15863d;
+    color: #ffffff;
     &:hover {
         background-color: #127535;
     }
