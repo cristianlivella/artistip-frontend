@@ -27,7 +27,7 @@ const BalanceBanner = () => {
     const nanoPrice = useSelector((state: ReduxState) => state.server.nanoPrice);
 
     const balanceIntPart = bigInt(balance).divide(bigInt(10).pow(30));
-    const balanceDecimalPart = bigInt(balance).divide(bigInt(10).pow(24)).minus(balanceIntPart.multiply(bigInt(10).pow(8))).abs();
+    const balanceDecimalPart = bigInt(balance).divide(bigInt(10).pow(24)).minus(balanceIntPart.multiply(bigInt(10).pow(6))).abs();
     const balanceUsd = bigInt(balance).divide(bigInt(10).pow(22)).toJSNumber() / Math.pow(10, 8) * nanoPrice;
 
     const balanceNegative = bigInt(balance).lesser(0);
