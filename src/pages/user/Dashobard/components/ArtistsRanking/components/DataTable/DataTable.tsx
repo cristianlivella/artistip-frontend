@@ -82,7 +82,7 @@ const DataTable = (props: Props) => {
                                             <TableCell>Artist</TableCell>
                                             <FixedWidthCell>Followers</FixedWidthCell>
                                             <FixedWidthCell>{isPayoutEstimated ? 'Estimated payout' : 'Payout'}</FixedWidthCell>
-                                            <SmallTableCell>Listen time</SmallTableCell>
+                                            <SmallTableCell>Listening time</SmallTableCell>
                                         </StyledTableHeader>
                                     );
                                 }
