@@ -12,7 +12,7 @@ import {  Item } from '../../types';
 import { AvatarTableCell, Container, FixedWidthCell, SmallTableCell, StyledAvatar, StyledLink, StyledTableBody, StyledTableHeader } from './styled';
 
 interface Props {
-    data: Item[];
+    data?: Item[];
 }
 
 const DataTable = (props: Props) => {
@@ -24,8 +24,15 @@ const DataTable = (props: Props) => {
     };
 
     const formatFollowersNumber = (value: number) => {
-        // Numeral.js also here?
-        return value.toLocaleString('en-US').replaceAll(',', ' ');
+        if (value < 1000) {
+            return value;
+        }
+        else if (value < 1000000) {
+            return Math.floor(value / 100) / 10 + ' K';
+        }
+        else {
+            return Math.floor(value / 100000) / 10 + ' M';
+        }
     };
 
     const rawToNano = (raw: string) => {
@@ -54,6 +61,10 @@ const DataTable = (props: Props) => {
             return hours + ':' + formatNumber(minutes) + ' hour' + (hours !== 1 ? 's' : '');
         }
     } ;
+
+    if (!data) {
+        return null;
+    }
 
     const isPayoutEstimated = !data.every(artist => artist.estimatedPayout === undefined);
     const totalPayout = data.reduce((acc, cur) => acc.add(bigInt(cur.estimatedPayout ?? cur.payout)), bigInt(0)).toString();

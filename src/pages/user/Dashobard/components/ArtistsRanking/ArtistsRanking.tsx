@@ -5,6 +5,7 @@ import useComponentSize from '@rehooks/component-size';
 import CustomLoader from '../../../../../common/components/CustomLoader/CustomLoader';
 import api from '../../../../../utils/api';
 import DataTable from './components/DataTable/DataTable';
+import NoDataAvailable from './components/NoDataAvailable/NoDataAvailable';
 import TimeSpanSelector from './components/TimeSpanSelector/TimeSpanSelector';
 import { Container, StyledTypography } from './styled';
 import { ApiResponse, TimeSpan } from './types';
@@ -53,7 +54,7 @@ const ArtistsRanking = () => {
         <Container ref={containerRef} height={containerHeight}>
             <StyledTypography variant='h4'>Artists ranking</StyledTypography>
             <TimeSpanSelector value={timeSpan} set={setTimeSpan} />
-            { isLoading ? <CustomLoader /> : (data !== null && <DataTable data={data.data} />)  }
+            { isLoading ? <CustomLoader /> : (data?.data.length === 0 ? <NoDataAvailable /> : <DataTable data={data?.data} />)  }
         </Container>
     );
 };
