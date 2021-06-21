@@ -72,7 +72,9 @@ const ServerInfoPolling = () => {
     }, [dispatch, checkMaintenance, checkFrontend]);
 
     useEffect(() => {
-        updateServerInfo();
+        if (lastMaintenanceInfo === null && lastFrontendInfo === null) {
+            updateServerInfo();
+        }
 
         const interval = setInterval(() => {
             updateServerInfo();
@@ -81,7 +83,7 @@ const ServerInfoPolling = () => {
         return () => {
             clearInterval(interval);
         };
-    }, [updateServerInfo]);
+    }, [updateServerInfo, lastMaintenanceInfo, lastFrontendInfo]);
 
     return null;
 };

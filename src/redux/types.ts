@@ -14,11 +14,13 @@ export interface GenericUserType {
     onboardingStep?: number;
     balance?: string;
     wallet?: string | null;
-    settings?: {
-        budget: string;
-        maxFollowers: number;
-        smallArtistConstant: number;
-    };
+    settings?: UserSettings;
+}
+
+export interface UserSettings {
+    budget: string;
+    maxFollowers: number;
+    smallArtistsConstant: number;
 }
 
 export interface ServerInfoType {

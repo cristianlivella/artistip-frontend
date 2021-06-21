@@ -26,7 +26,7 @@ const WalletAddressModal = (props: Props) => {
         <DialogTitle id='responsive-dialog-title'>Wallet deposit address</DialogTitle>
         <DialogContent>
             <StyledDialogContentText>
-                This is your wallet address: <StyledLink href={'nano:' + address} target='_blank'>{address}</StyledLink>.
+                This is your Nano wallet address: <StyledLink href={'nano:' + address} target='_blank'>{address}</StyledLink>.
             </StyledDialogContentText>
             <StyledDialogContentText>
                 You can deposit here the funds you want to send to your favorite artists. This wallet is encrypted with the password you chose.

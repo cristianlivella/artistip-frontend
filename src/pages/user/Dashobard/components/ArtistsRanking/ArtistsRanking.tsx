@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import useComponentSize from '@rehooks/component-size';
 
 import CustomLoader from '../../../../../common/components/CustomLoader/CustomLoader';
+import { ReduxState, UserSettings } from '../../../../../redux/types';
 import api from '../../../../../utils/api';
 import DataTable from './components/DataTable/DataTable';
 import NoDataAvailable from './components/NoDataAvailable/NoDataAvailable';
@@ -17,38 +19,42 @@ const ArtistsRanking = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState<ApiResponse | null>(null);
 
+    const userSettings = useSelector((state: ReduxState) => state.user.settings as UserSettings);
+    const { budget, maxFollowers, smallArtistsConstant } = userSettings;
+
     const containerRef = useRef(null);
     const containerCurrentSize = useComponentSize(containerRef);
     const containerCurrentHeight = useRef(0);
 
-    const updateData = useCallback((background: boolean = false) => {
-        if (!background) {
-            setContainerHeight(containerCurrentHeight.current);
-            setIsLoading(true);
-        }
+    const updateData = useCallback(() => {
         api.request('/stats/' + timeSpan + '/' + timePeriod).then(res => {
             setData(res.data);
         }).finally(() => {
             setIsLoading(false);
             setContainerHeight(null);
         });
-    }, [timePeriod, timeSpan, containerCurrentHeight]);
+    }, [timePeriod, timeSpan]);
 
     useEffect(() => {
         containerCurrentHeight.current = containerCurrentSize.height;
     }, [containerCurrentSize]);
 
     useEffect(() => {
+        setContainerHeight(containerCurrentHeight.current);
+        setIsLoading(true);
+    }, [timePeriod, timeSpan]);
+
+    useEffect(() => {
         updateData();
 
         const timer = setInterval(() => {
-            updateData(true);
+            updateData();
         }, 5 * 60 * 1000);
 
         return () => {
             clearInterval(timer);
         };
-    }, [updateData]);
+    }, [updateData, budget, maxFollowers, smallArtistsConstant]);
 
     return (
         <Container ref={containerRef} height={containerHeight}>

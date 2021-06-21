@@ -1,6 +1,8 @@
 import spotify from '../../../../../../assets/spotify.png';
 import BalanceBanner from './components/BalanceBanner/BalanceBanner';
+import LowBalanceBanner from './components/LowBalanceBanner/LowBalanceBanner';
 import MaintenanceBanner from './components/MaintenanceBanner/MaintenanceBanner';
+import SettingsBanner from './components/SettingsBanner/SettingsBanner';
 import UserProfile from './components/UserProfile/UserProfile';
 import { AttributionContainer, Container, Content, Footer, SpotifyAttributionText, SpotifyLogo, StyledDivider, StyledLink, StyledTypography } from './styled';
 
@@ -16,6 +18,8 @@ const SidebarContent = (props: Props) => {
                     ArtisTip
                 </StyledTypography>
                 <BalanceBanner />
+                <SettingsBanner />
+                <LowBalanceBanner />
                 <MaintenanceBanner />
             </Content>
             <Footer>
