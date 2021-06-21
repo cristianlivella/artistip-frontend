@@ -107,7 +107,7 @@ const sendApiRequestFeedback = (requestId: string, statusCode: number, time: num
     fetch(API_HOST + '/performance-monitor', {
         method: 'POST',
         body: JSON.stringify(snakecaseKeys(data))
-    });
+    }).catch(() => undefined);
 };
 
 const sendNodeRequestFeedback = (url: string, statusCode: number, errorBody: string, time: number) => {
@@ -121,7 +121,7 @@ const sendNodeRequestFeedback = (url: string, statusCode: number, errorBody: str
     fetch(API_HOST + '/performance-monitor', {
         method: 'POST',
         body: JSON.stringify(snakecaseKeys(data))
-    });
+    }).catch(() => undefined);
 };
 
 const api = {
