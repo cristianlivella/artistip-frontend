@@ -18,7 +18,7 @@
     "@types/node": "^12.0.0",
     "@types/pbkdf2": "^3.1.0",
     "@types/qrcode.react": "^1.0.1",
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.10",
